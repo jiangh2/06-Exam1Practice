@@ -2,8 +2,8 @@
 PRACTICE Exam 1, problem 1.
 
 Authors: David Mutchler, Vibha Alangar, Valerie Galluzzi, Mark Hays,
-         Amanda Stouder, their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         Amanda Stouder, their colleagues and Hao Jiang.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ########################################################################
 # Students:
@@ -27,12 +27,13 @@ Authors: David Mutchler, Vibha Alangar, Valerie Galluzzi, Mark Hays,
 
 import testing_helper
 import time
+import math
 
 
 def main():
     """ Calls the   TEST   functions in this module. """
-    run_test_problem1a()
-    run_test_problem1b()
+    #run_test_problem1a()
+    #run_test_problem1b()
     run_test_problem1c()
 
 
@@ -135,6 +136,21 @@ def run_test_problem1a():
     actual = problem1a(30, 100)
     print_actual_result_of_test(expected, actual, test_results)
 
+    # Test 3:
+    expected = 0.841  # This is APPROXIMATELY the correct answer.
+    print_expected_result_of_test([1, 1], expected, test_results,
+                                  format_string)
+    actual = problem1a(1, 1)
+    print_actual_result_of_test(expected, actual, test_results)
+
+    # Test 4:
+    expected = -0.757  # This is APPROXIMATELY the correct answer.
+    print_expected_result_of_test([2, 2], expected, test_results,
+                                  format_string)
+    actual = problem1a(2, 2)
+    print_actual_result_of_test(expected, actual, test_results)
+
+
     # ------------------------------------------------------------------
     # TO DO: 2 (continued).
     # Below this comment, add 2 more test cases of your own choosing.
@@ -163,8 +179,13 @@ def problem1a(m, n):
          which is about 1.135.
       -- If m is 30 and n is 100, the correct answer is about 1.278.
     """
+    total = 0
+    for k in range(n ** 2 - m ** 2 + 1):
+        total = total + math.sin(m ** 2 + k)
+    return total
+
     # ------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # DONE: 4. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -195,6 +216,29 @@ def run_test_problem1b():
     print('Testing the   problem1b   function:')
     print('--------------------------------------------------')
 
+    #Test 1
+    expected = 5
+    actual = problem1b(3, 5)
+    print('Test 1 expected:', expected)
+    print('       actual:  ', actual)
+
+    #Test 2
+    expected = 1
+    actual = problem1b(2, 1)
+    print('Test 2 expected:', expected)
+    print('       actual:  ', actual)
+
+    #Test 3
+    expected = 44
+    actual = problem1b(5, 40)
+    print('Test 3 expected:', expected)
+    print('       actual:  ', actual)
+
+    #Test 4
+    expected = 1
+    actual = problem1b(3, 1)
+    print('Test 4 expected:', expected)
+    print('       actual:  ', actual)
 
 def problem1b(m, f):
     """
@@ -212,6 +256,12 @@ def problem1b(m, f):
       -- If m is 5 and f is 40, the correct answer is 44,
            since there are 44 primes between 5 and 200.
      """
+    count = 0
+    for k in range(f * m - m + 1):
+        print(m + k)
+        if is_prime(m + k):
+            count = count + 1
+    return count
     # ------------------------------------------------------------------
     # TODO: 6. Implement and test this function.
     #   Note that you should write its TEST function first (above).
@@ -306,8 +356,15 @@ def problem1c(n):
            and the product of those numbers is 223092870,
            and the sum of the digits in 223092870 is 33.
     """
+    total = 1
+    for k in range(n - 2 + 1):
+        if is_prime(k + 2):
+            total = total * (k + 2)
+    sum = sum_of_digits(total)
+    return sum
+
     # ------------------------------------------------------------------
-    # TODO: 7. Implement and test this function.
+    # DONE: 7. Implement and test this function.
     #          Tests have been written for you (above).
     #
     ####################################################################

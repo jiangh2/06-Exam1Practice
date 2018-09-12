@@ -313,6 +313,7 @@ def problem0c(circle, n, window):
     x = circle.center.x
     y = circle.center.y
     for k in range(n):
+
         x = x + 2 * circle.radius
         y = y
         n_circle = rg.Circle(rg.Point(x, y), circle.radius)
