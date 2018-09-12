@@ -2,7 +2,7 @@
 PRACTICE Exam 1, problem 2.
 
 Authors: David Mutchler, Vibha Alangar, Valerie Galluzzi, Mark Hays,
-         Amanda Stouder, their colleagues and PUT_YOUR_NAME_HERE.
+         Amanda Stouder, their colleagues and Hao Jiang.
 """  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
@@ -31,7 +31,7 @@ import rosegraphics as rg
 def main():
     """ Calls the   TEST   functions in this module. """
     run_test_problem2a()
-    run_test_problem2b()
+    #run_test_problem2b()
 
 
 def run_test_problem2a():
@@ -101,6 +101,40 @@ def problem2a(circle, rectangle, window):
       :type rectangle: rg.Rectangle
       :type window:    rg.RoseWindow
     """
+    if rectangle.corner_1.x < rectangle.corner_2.x:
+        x1 = rectangle.corner_2.x
+        x2 = rectangle.corner_1.x
+
+    elif rectangle.corner_1.x > rectangle.corner_2.x:
+        x1 = rectangle.corner_1.x
+        x2 = rectangle.corner_2.x
+
+    if rectangle.corner_1.y < rectangle.corner_2.y:
+        y1 = rectangle.corner_1.y
+        y2 = rectangle.corner_2.y
+    elif rectangle.corner_1.y > rectangle.corner_2.y:
+        y1 = rectangle.corner_2.y
+        y2 = rectangle.corner_1.y
+    circle.attach_to(window)
+    rectangle.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+    line = rg.Line(rg.Point(x1, y1), rg.Point(x2, y2))
+    line.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+    circle.fill_color = rectangle.outline_color
+    window.render()
+
+
+
+
+
+
+
+
+    window.render()
+
     # ------------------------------------------------------------------
     # TODO: 2. Implement and test this function.
     #          Tests have been written for you (above).
