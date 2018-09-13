@@ -2,8 +2,8 @@
 PRACTICE Exam 1, problem 3.
 
 Authors: David Mutchler, Vibha Alangar, Valerie Galluzzi, Mark Hays,
-         Amanda Stouder, their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         Amanda Stouder, their colleagues and Hao Jiang.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -30,7 +30,7 @@ import rosegraphics as rg
 
 def main():
     """ Calls the   TEST   functions in this module. """
-    run_test_problem3a()
+    #run_test_problem3a()
     run_test_problem3b()
 
 
@@ -95,6 +95,16 @@ def run_test_problem3a():
     print('Test 4 expected:', expected)
     print('       actual:  ', answer)
 
+    # Test 5
+    point = rg.Point(0, 0)
+    expected = 4
+    answer = problem3a(window3, point, 2)
+    print()
+    print('Test 4 expected:', expected)
+    print('       actual:  ', answer)
+
+
+
     window3.close_on_mouse_click()
 
     # ------------------------------------------------------------------
@@ -136,8 +146,31 @@ def problem3a(window, point, n):
         :type point:  rg.Point
         :type n:      int
     """
+    x1 = point.x
+    y1 = point.y
+    p1 = point.x
+    q1 = point.y + 50
+    thickness = 1
+    total = 0
+    for k in range(n):
+        line = rg.Line(rg.Point(x1, y1), rg.Point(p1, q1))
+        line.thickness = thickness
+        line.attach_to(window)
+        total = total + thickness
+        if thickness < 13:
+            thickness = thickness + 2
+        else:
+            thickness = thickness
+        x1 = x1 + 20
+        y1 = y1 + 10
+        p1 = p1 + 20
+        q1 = q1 + 10
+    window.render()
+    return total
+
+
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -200,8 +233,24 @@ def problem3b(m, point1):
         :type m:      int
         :type point1: rg.Point
     """
+    window = rg.RoseWindow(400, 650)
+    n = 3
+    x = point1.x
+    y = point1.y
+    total = 0
+    for k in range(m):
+        point = rg.Point(x, y)
+        problem3a(window, point, n)
+        total = total + problem3a(window, point, n)
+        n = n + 2
+        x = x
+        y = y + 60
+    window.close_on_mouse_click()
+    return total
+
+
     # ------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # DONE: 4. Implement and test this function.
     #          Tests have been written for you (above).
     #
     ####################################################################
